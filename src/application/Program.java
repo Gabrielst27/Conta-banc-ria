@@ -1,6 +1,8 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import entities.Account;
@@ -13,6 +15,8 @@ public class Program {
 	public static void main (String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
+		
+		List<Account> accounts = new ArrayList<>();
 		
 		System.out.println("Enter account data");
 		
@@ -31,32 +35,25 @@ public class Program {
 			
 			if(type.toUpperCase().equals("C")) {
 				Account account = new Account(number, holder, balance, withdrawLimit);
-				
-				System.out.print("Enter amount for withdraw: ");
-				double amount = sc.nextDouble();
-				
-				account.withdraw(amount);
+				accounts.add(account);
 			} else if(type.toUpperCase().equals("B")) {
 				System.out.print("Loan limit: ");
 				double loanLimit = sc.nextDouble();
 				
 				BusinessAccount account = new BusinessAccount(number, holder, balance, withdrawLimit, loanLimit);
-				
-				System.out.print("Enter amount for withdraw: ");
-				double amount = sc.nextDouble();
-				
-				account.withdraw(amount);
+				accounts.add(account);
 			} else if(type.toUpperCase().equals("S")) {
 				System.out.print("Interest rate: ");
 				double interestRate = sc.nextDouble();
 				
 				SavingsAccount account = new SavingsAccount(number, holder, balance, withdrawLimit, interestRate);
-				
-				System.out.print("Enter amount for withdraw: ");
-				double amount = sc.nextDouble();
-				
-				account.withdraw(amount);
+				accounts.add(account);
 			}
+			
+			System.out.print("Enter amount for withdraw: ");
+			double amount = sc.nextDouble();
+			
+			accounts.get(0).withdraw(amount);
 			
 		}
 		catch (InputMismatchException e) {
