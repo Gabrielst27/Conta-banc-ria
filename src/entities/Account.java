@@ -2,7 +2,7 @@ package entities;
 
 import exceptions.DomainException;
 
-public abstract class Account {
+public class Account {
 	
 	protected Integer number;
 	protected String holder;
@@ -39,6 +39,11 @@ public abstract class Account {
 		balance += amount;
 	}
 	
-	public abstract void withdraw(Double amount) throws DomainException;
+	public void withdraw(Double amount) throws DomainException{
+		if(balance <= 0) {
+			throw new DomainException ("Error in withdraw: withdraw exceeds account balance!");
+		}
+		balance -= (amount + (amount * 0.03));
+	}
 
 }
