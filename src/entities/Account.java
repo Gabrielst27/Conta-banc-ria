@@ -1,5 +1,7 @@
 package entities;
 
+import exceptions.DomainException;
+
 public abstract class Account {
 	
 	protected Integer number;
@@ -34,6 +36,6 @@ public abstract class Account {
 	}
 	
 	public abstract void deposit(Double amount);
-	public abstract void withdraw(Double amount);
+	public abstract void withdraw(Double amount) throws DomainException;
 
 }
