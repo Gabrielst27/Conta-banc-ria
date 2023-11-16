@@ -50,8 +50,15 @@ public class Program {
 				accounts.add(account);
 			}
 			
-			System.out.print("Enter amount for withdraw: ");
+			System.out.println();
+			System.out.print("Enter amount for deposit: ");
 			double amount = sc.nextDouble();
+			
+			accounts.get(0).deposit(amount);
+			
+			System.out.println();
+			System.out.print("Enter amount for withdraw: ");
+			amount = sc.nextDouble();
 			
 			accounts.get(0).withdraw(amount);
 			
