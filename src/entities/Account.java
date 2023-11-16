@@ -35,7 +35,10 @@ public abstract class Account {
 		return withdrawLimit;
 	}
 	
-	public abstract void deposit(Double amount);
+	public void deposit(Double amount) {
+		balance += amount;
+	}
+	
 	public abstract void withdraw(Double amount) throws DomainException;
 
 }

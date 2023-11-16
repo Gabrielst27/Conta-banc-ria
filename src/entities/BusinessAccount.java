@@ -2,7 +2,7 @@ package entities;
 
 import exceptions.DomainException;
 
-public class BusinessAccount extends Account {
+public final class BusinessAccount extends Account {
 	
 	private Double loanLimit;
 	
@@ -32,16 +32,11 @@ public class BusinessAccount extends Account {
 	}
 
 	@Override
-	public void deposit(Double amount) {
-		balance += amount;	
-	}
-
-	@Override
 	public void withdraw(Double amount) throws DomainException {
 		if(balance <= 0) {
-			throw new DomainException ("Error in withdraw: withdraw value exceeds account's balance!");
+			throw new DomainException ("Error in withdraw: withdraw exceeds account's balance!");
 		}
-		balance -= amount + (amount * 0.1);
+		balance -= (amount + (amount * 0.1));
 	}
 
 }
