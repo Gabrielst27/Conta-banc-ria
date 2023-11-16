@@ -33,8 +33,11 @@ public final class BusinessAccount extends Account {
 
 	@Override
 	public void withdraw(Double amount) throws DomainException {
-		if(balance <= 0) {
-			throw new DomainException ("Error in withdraw: withdraw exceeds account's balance!");
+		if(amount > withdrawLimit) {
+			throw new DomainException("Error in withdraw: the amount exceeds withdraw limit!");
+		}
+		if(amount > balance) {
+			throw new DomainException("Error in withdraw: not enough balance!");
 		}
 		balance -= (amount + (amount * 0.1));
 	}
