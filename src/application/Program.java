@@ -50,28 +50,25 @@ public class Program {
 			
 			System.out.println();
 			System.out.print("Enter amount for deposit: ");
-			double amount = sc.nextDouble();
-			
-			account.deposit(amount);
+			account.deposit(sc.nextDouble());
+			System.out.print("Updated balance: " + account.getBalance());
 			
 			System.out.println();
 			System.out.print("Enter amount for withdraw: ");
-			amount = sc.nextDouble();
-			
-			account.withdraw(amount);
+			account.withdraw(sc.nextDouble());
+			System.out.print("Updated balance: " + account.getBalance());
 			
 			if(type.toUpperCase().equals("B")) {
 				BusinessAccount businessAccount = (BusinessAccount)account;
 				//Realizado downcasting de Account para BusinessAccount
 				System.out.printf("\nEnter amount for loan: ");
-				double loan = sc.nextDouble();
-				businessAccount.loan(loan);
+				businessAccount.loan(sc.nextDouble());
+				System.out.print("Updated balance: " + account.getBalance());
 			}
 			if(type.toUpperCase().equals("S")) {
 				SavingsAccount savingsAccount = (SavingsAccount)account;
 				System.out.printf("\nEnter the number of months to see the total income: ");
 				int months = sc.nextInt();
-				
 				System.out.printf("After %d months, you will have R$ %.2f", 
 						months, savingsAccount.updateBalance(months));
 			}
