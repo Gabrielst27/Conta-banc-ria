@@ -1,8 +1,6 @@
 package application;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 import entities.Account;
@@ -16,7 +14,7 @@ public class Program {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		List<Account> accounts = new ArrayList<>();
+		Account account = new Account();
 		
 		System.out.println("Enter account data");
 		
@@ -34,43 +32,43 @@ public class Program {
 			double withdrawLimit = sc.nextDouble();
 			
 			if(type.toUpperCase().equals("C")) {
-				Account account = new Account(number, holder, balance, withdrawLimit);
-				accounts.add(account);
+				account = new Account(number, holder, balance, withdrawLimit);
+				
 			} else if(type.toUpperCase().equals("B")) {
 				System.out.print("Loan limit: ");
 				double loanLimit = sc.nextDouble();
 				
-				BusinessAccount account = new BusinessAccount(number, holder, balance, withdrawLimit, loanLimit);		
-				accounts.add(account);
+				account = new BusinessAccount(number, holder, balance, withdrawLimit, loanLimit);		
+				
 			} else if(type.toUpperCase().equals("S")) {
 				System.out.print("Interest rate: ");
 				double interestRate = sc.nextDouble();
 				
-				Account account = new SavingsAccount(number, holder, balance, withdrawLimit, interestRate);
-				accounts.add(account);
+				account = new SavingsAccount(number, holder, balance, withdrawLimit, interestRate);
+				
 			}
 			
 			System.out.println();
 			System.out.print("Enter amount for deposit: ");
 			double amount = sc.nextDouble();
 			
-			accounts.get(0).deposit(amount);
+			account.deposit(amount);
 			
 			System.out.println();
 			System.out.print("Enter amount for withdraw: ");
 			amount = sc.nextDouble();
 			
-			accounts.get(0).withdraw(amount);
+			account.withdraw(amount);
 			
 			if(type.toUpperCase().equals("B")) {
-				BusinessAccount businessAccount = (BusinessAccount)accounts.get(0);
+				BusinessAccount businessAccount = (BusinessAccount)account;
 				//Realizado downcasting de Account para BusinessAccount
 				System.out.printf("\nEnter amount for loan: ");
 				double loan = sc.nextDouble();
 				businessAccount.loan(loan);
 			}
 			if(type.toUpperCase().equals("S")) {
-				SavingsAccount savingsAccount = (SavingsAccount)accounts.get(0);
+				SavingsAccount savingsAccount = (SavingsAccount)account;
 				System.out.printf("\nEnter the number of months to see the total income: ");
 				int months = sc.nextInt();
 				
