@@ -40,13 +40,13 @@ public class Program {
 				System.out.print("Loan limit: ");
 				double loanLimit = sc.nextDouble();
 				
-				BusinessAccount account = new BusinessAccount(number, holder, balance, withdrawLimit, loanLimit);
+				BusinessAccount account = new BusinessAccount(number, holder, balance, withdrawLimit, loanLimit);		
 				accounts.add(account);
 			} else if(type.toUpperCase().equals("S")) {
 				System.out.print("Interest rate: ");
 				double interestRate = sc.nextDouble();
 				
-				SavingsAccount account = new SavingsAccount(number, holder, balance, withdrawLimit, interestRate);
+				Account account = new SavingsAccount(number, holder, balance, withdrawLimit, interestRate);
 				accounts.add(account);
 			}
 			
@@ -62,6 +62,13 @@ public class Program {
 			
 			accounts.get(0).withdraw(amount);
 			
+			if(type.toUpperCase().equals("B")) {
+				BusinessAccount businessAccount = (BusinessAccount)accounts.get(0);
+				System.out.printf("\nEnter amount for loan: ");
+				double loan = sc.nextDouble();
+				businessAccount.loan(loan);
+			}
+		
 		}
 		catch (InputMismatchException e) {
 			System.out.println("Error in input: invalid input type");
