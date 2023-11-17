@@ -23,10 +23,12 @@ public final class SavingsAccount extends Account {
 		this.interestRate = interestRate;
 	}
 	
-	public final void updateBalance() throws DomainException {
+	public final Double updateBalance(Integer months) throws DomainException {
 		if (balance <= 0) {
 			throw new DomainException ("Error in ratings: account has no balance!");
 		}
+		
+		return balance += (balance * interestRate * months);
 	}
 
 	@Override

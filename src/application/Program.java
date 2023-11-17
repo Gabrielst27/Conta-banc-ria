@@ -64,9 +64,18 @@ public class Program {
 			
 			if(type.toUpperCase().equals("B")) {
 				BusinessAccount businessAccount = (BusinessAccount)accounts.get(0);
+				//Realizado downcasting de Account para BusinessAccount
 				System.out.printf("\nEnter amount for loan: ");
 				double loan = sc.nextDouble();
 				businessAccount.loan(loan);
+			}
+			if(type.toUpperCase().equals("S")) {
+				SavingsAccount savingsAccount = (SavingsAccount)accounts.get(0);
+				System.out.printf("\nEnter the number of months to see the total income: ");
+				int months = sc.nextInt();
+				
+				System.out.printf("After %d months, you will have R$ %.2f", 
+						months, savingsAccount.updateBalance(months));
 			}
 		
 		}
