@@ -18,9 +18,9 @@ public class Program {
 		
 		System.out.println("Enter account data");
 		
+		createAccount();
+		
 		try {
-			System.out.print("Type (c/b/s): ");
-			String type = sc.nextLine();
 			System.out.print("Number: ");
 			int number = sc.nextInt();
 			sc.nextLine();
@@ -31,16 +31,16 @@ public class Program {
 			System.out.print("Withdraw Limit: ");
 			double withdrawLimit = sc.nextDouble();
 			
-			if(type.toUpperCase().equals("C")) {
+			if(createAccount().toUpperCase().equals("C")) {
 				account = new Account(number, holder, balance, withdrawLimit);
 				
-			} else if(type.toUpperCase().equals("B")) {
+			} else if(createAccount().toUpperCase().equals("B")) {
 				System.out.print("Loan limit: ");
 				double loanLimit = sc.nextDouble();
 				
 				account = new BusinessAccount(number, holder, balance, withdrawLimit, loanLimit);		
 				
-			} else if(type.toUpperCase().equals("S")) {
+			} else if(createAccount().toUpperCase().equals("S")) {
 				System.out.print("Interest rate: ");
 				double interestRate = sc.nextDouble();
 				
@@ -58,14 +58,14 @@ public class Program {
 			account.withdraw(sc.nextDouble());
 			System.out.printf("Updated balance: $ %.2f", account.getBalance());
 			
-			if(type.toUpperCase().equals("B")) {
+			if(createAccount().toUpperCase().equals("B")) {
 				BusinessAccount businessAccount = (BusinessAccount)account;
 				//Realizado downcasting de Account para BusinessAccount
 				System.out.printf("\nEnter amount for loan: ");
 				businessAccount.loan(sc.nextDouble());
 				System.out.printf("Updated balance: $ %.2f", account.getBalance());
 			}
-			if(type.toUpperCase().equals("S")) {
+			if(createAccount().toUpperCase().equals("S")) {
 				SavingsAccount savingsAccount = (SavingsAccount)account;
 				System.out.printf("\nEnter the number of months to see the total income: ");
 				int months = sc.nextInt();
@@ -73,16 +73,32 @@ public class Program {
 						months, savingsAccount.updateBalance(months));
 			}
 		
-			
 		}
 		catch (InputMismatchException e) {
 			System.out.println("Error in input: invalid input type");
-		}
-		catch (DomainException e) {
+		} catch (DomainException e) {
 			System.out.println(e.getMessage());
 		}
 		
 		sc.close();
+			
+		}
+	
+	public static String createAccount() {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("Type (c/b/s): ");
+		String type = sc.nextLine();
+		
+		if(!type.toUpperCase().equals("C") && !type.toUpperCase().equals("B") && !type.toUpperCase().equals("S")) {
+			System.out.printf("Invalid value! Try again.\n\n");
+			createAccount();
+		}
+			
+		sc.close();
+		
+		return type;
 		
 	}
 
