@@ -51,28 +51,29 @@ public class Program {
 			System.out.println();
 			System.out.print("Enter amount for deposit: ");
 			account.deposit(sc.nextDouble());
-			System.out.print("Updated balance: " + account.getBalance());
+			System.out.printf("Updated balance: $ %.2f", account.getBalance());
 			
 			System.out.println();
 			System.out.print("Enter amount for withdraw: ");
 			account.withdraw(sc.nextDouble());
-			System.out.print("Updated balance: " + account.getBalance());
+			System.out.printf("Updated balance: $ %.2f", account.getBalance());
 			
 			if(type.toUpperCase().equals("B")) {
 				BusinessAccount businessAccount = (BusinessAccount)account;
 				//Realizado downcasting de Account para BusinessAccount
 				System.out.printf("\nEnter amount for loan: ");
 				businessAccount.loan(sc.nextDouble());
-				System.out.print("Updated balance: " + account.getBalance());
+				System.out.printf("Updated balance: $ %.2f", account.getBalance());
 			}
 			if(type.toUpperCase().equals("S")) {
 				SavingsAccount savingsAccount = (SavingsAccount)account;
 				System.out.printf("\nEnter the number of months to see the total income: ");
 				int months = sc.nextInt();
-				System.out.printf("After %d months, you will have R$ %.2f", 
+				System.out.printf("After %d months, you will have $ %.2f", 
 						months, savingsAccount.updateBalance(months));
 			}
 		
+			
 		}
 		catch (InputMismatchException e) {
 			System.out.println("Error in input: invalid input type");
